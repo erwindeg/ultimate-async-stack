@@ -1,8 +1,8 @@
 package io.vertx.starter.database;
 
-import io.vertx.core.Vertx;
+import io.vertx.rxjava.core.Vertx;
 import io.vertx.core.json.JsonObject;
-import io.vertx.ext.mongo.MongoClient;
+import io.vertx.rxjava.ext.mongo.MongoClient;
 
 /**
  * Created by Erwin on 01/03/2017.
@@ -28,7 +28,7 @@ public class MongoClientPool {
     public MongoClient getInstance() {
        return MongoClient.createShared(vertx, new JsonObject()
                 .put("connection_string", "mongodb://" + (databaseHost != null ? databaseHost : "localhost") + ":" + (databasePort != null ? databasePort : 27017))
-                .put("db_name", (dbName != null ? dbName : "DEFAULT_DB"))
+                .put("db_name", (dbName != null ? dbName : "MOVIE_DB"))
                 .put("user", dbUserName)
                 .put("password", dbPassword));
     }
