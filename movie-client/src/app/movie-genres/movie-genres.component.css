@@ -1,0 +1,33 @@
+md-chip.crime {
+  background-color: red;
+  color: rgba(255,255,255,.9);
+}
+
+md-chip.sci-fi {
+  background-color: rebeccapurple;
+  color: rgba(255,255,255,.8);
+}
+
+md-chip.adventure {
+  background-color: darkolivegreen;
+  color: rgba(255,255,255,.8);
+}
+
+md-chip.action {
+  background-color: royalblue;
+  color: rgba(255,255,255,.8);
+}
+
+md-chip.drama {
+  background-color: deeppink;
+  color: rgba(255,255,255,.8);
+}
+
+md-chip.horror {
+  background-color: darkblue;
+  color: rgba(255,255,255,.8);
+}
+
+md-chip:hover {
+  color: white;
+}

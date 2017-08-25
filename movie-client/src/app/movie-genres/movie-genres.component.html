@@ -1,0 +1,4 @@
+<md-chip-list>
+  <md-chip [ngClass]="genre | lowercase"
+           *ngFor="let genre of genres">{{ genre }}</md-chip>
+</md-chip-list>

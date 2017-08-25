@@ -1,0 +1,21 @@
+<md-card>
+  <md-card-title>
+    {{ movie.title }}
+  </md-card-title>
+  <md-card-subtitle>
+    {{ movie.year }} | {{ movie.runTime }}
+  </md-card-subtitle>
+  <img md-card-image src="{{ movie.poster }}">
+  <md-card-content>
+    <app-movie-genres [genres]="movie.genres"></app-movie-genres>
+    <!-- todo description -->
+    <p>
+      {{ movie.description }}
+    </p>
+    <app-movie-rating [rating]="movie.rating"></app-movie-rating>
+  </md-card-content>
+  <md-card-actions>
+    <button md-button>Details</button>
+    <button md-button>Rate</button>
+  </md-card-actions>
+</md-card>
