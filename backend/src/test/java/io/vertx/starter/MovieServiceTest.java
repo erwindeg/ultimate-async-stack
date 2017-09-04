@@ -22,7 +22,7 @@ public class MovieServiceTest {
   @Before
   public void setUp(TestContext context) {
     this.vertx = Vertx.vertx();
-    this.movieService = MovieService.create(this.vertx);
+    this.movieService = new MovieService(vertx);
   }
 
   @After

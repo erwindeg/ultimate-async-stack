@@ -8,22 +8,28 @@ import io.vertx.rxjava.core.Vertx;
 import io.vertx.rxjava.core.http.HttpServer;
 import io.vertx.rxjava.ext.web.Router;
 import io.vertx.rxjava.ext.web.handler.CorsHandler;
-import io.vertx.starter.movies.MovieServiceImpl;
+import io.vertx.starter.api.MovieRestService;
+import io.vertx.starter.movies.MovieService;
+import io.vertx.starter.ws.WebSocketHandler;
 
 public class MainVerticle extends AbstractVerticle {
-
-  @Override
-  public void start() {
-    HttpServer server = vertx.createHttpServer();
-    Router router = Router.router(vertx);
-    router.route().handler(createCorsHandler());
-    server.websocketHandler(new WebSocketHandler(new MovieServiceImpl(vertx)));
-    server.requestHandler(router::accept).listen(8080);
-  }
 
   public static void main(String[] args) {
     Vertx vertx = Vertx.vertx();
     RxHelper.deployVerticle(vertx, new MainVerticle());
+  }
+
+
+  @Override
+  public void start() {
+    MovieService movieService = new MovieService(vertx);
+
+    HttpServer server = vertx.createHttpServer();
+    Router router = Router.router(vertx);
+    router.mountSubRouter("/api",new MovieRestService(movieService,vertx).getRouter());
+    router.route().handler(createCorsHandler());
+    server.websocketHandler(new WebSocketHandler(movieService));
+    server.requestHandler(router::accept).listen(8080);
   }
 
   public Handler createCorsHandler() {

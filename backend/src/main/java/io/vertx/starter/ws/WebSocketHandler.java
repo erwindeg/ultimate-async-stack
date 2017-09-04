@@ -1,11 +1,10 @@
-package io.vertx.starter;
+package io.vertx.starter.ws;
 
 import io.vertx.core.Handler;
 import io.vertx.core.json.DecodeException;
 import io.vertx.core.json.JsonObject;
 import io.vertx.rxjava.core.http.ServerWebSocket;
 import io.vertx.starter.movies.MovieService;
-import io.vertx.starter.movies.MovieServiceImpl;
 import rx.Subscription;
 
 import java.util.HashMap;
@@ -19,7 +18,7 @@ public class WebSocketHandler implements Handler<ServerWebSocket> {
 
   Map<String, Subscription> subscriptions = new HashMap<>();
 
-  public WebSocketHandler(MovieServiceImpl movieService) {
+  public WebSocketHandler(MovieService movieService) {
     this.movieService = movieService;
   }
 

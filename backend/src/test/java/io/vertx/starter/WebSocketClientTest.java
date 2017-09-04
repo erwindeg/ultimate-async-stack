@@ -20,19 +20,17 @@ public class WebSocketClientTest extends AbstractVerticle {
 
       websocket.handler(data -> {
         System.out.println(data.toString("ISO-8859-1"));
-        //client.close();
       });
       JsonObject request = new JsonObject();
       request.put("action", "search");
-      request.put("body", "horror");
+      request.put("body", "Annabelle");
       websocket.writeTextMessage(request.toString());
-
-      JsonObject request2 = new JsonObject();
-      request2.put("action", "search");
-      request2.put("body", "romance");
-      websocket.writeTextMessage(request2.toString());
-
-
+      vertx.setTimer(1000, i -> {
+        JsonObject request2 = new JsonObject();
+        request2.put("action", "search");
+        request2.put("body", "Tower");
+        websocket.writeTextMessage(request2.toString());
+      });
     });
 
   }
