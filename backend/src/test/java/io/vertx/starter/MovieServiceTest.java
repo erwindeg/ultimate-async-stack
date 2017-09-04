@@ -1,10 +1,10 @@
 package io.vertx.starter;
 
-import io.vertx.rxjava.core.Vertx;
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.unit.Async;
 import io.vertx.ext.unit.TestContext;
 import io.vertx.ext.unit.junit.VertxUnitRunner;
+import io.vertx.rxjava.core.Vertx;
 import io.vertx.starter.movies.MovieService;
 import org.junit.After;
 import org.junit.Before;
@@ -20,21 +20,21 @@ public class MovieServiceTest {
   private MovieService movieService;
 
   @Before
-  public void setUp(TestContext tc) {
+  public void setUp(TestContext context) {
     this.vertx = Vertx.vertx();
-    this.movieService = new MovieService(vertx);
+    this.movieService = MovieService.create(this.vertx);
   }
 
   @After
-  public void tearDown(TestContext tc) {
-    vertx.close(tc.asyncAssertSuccess());
+  public void tearDown(TestContext context) {
+    vertx.close(context.asyncAssertSuccess());
   }
 
   @Test
-  public void findMoviesTest(TestContext context) {
+  public void testFindMovies(TestContext context) {
     Async async = context.async();
-    Observable<JsonObject> movies = this.movieService.findMovies();
-    movies.subscribe(new Observer<JsonObject>(){
+    Observable<JsonObject> movies = this.movieService.findMovies("horror");
+    movies.subscribe(new Observer<JsonObject>() {
       @Override
       public void onCompleted() {
         async.complete();
@@ -42,15 +42,13 @@ public class MovieServiceTest {
 
       @Override
       public void onError(Throwable throwable) {
-          throwable.printStackTrace();
+        throwable.printStackTrace();
       }
 
       @Override
       public void onNext(JsonObject entries) {
-          System.out.println(entries);
+        System.out.println(entries);
       }
     });
-
   }
-
 }

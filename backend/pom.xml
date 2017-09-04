@@ -28,8 +28,18 @@
 
   <dependencies>
     <dependency>
+      <groupId>io.netty</groupId>
+      <artifactId>netty-tcnative-boringssl-static</artifactId>
+      <version>1.1.33.Fork26</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
       <groupId>io.vertx</groupId>
       <artifactId>vertx-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.vertx</groupId>
+      <artifactId>vertx-web</artifactId>
     </dependency>
     <dependency>
       <groupId>io.vertx</groupId>
@@ -38,6 +48,14 @@
     <dependency>
       <groupId>io.vertx</groupId>
       <artifactId>vertx-rx-java</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.vertx</groupId>
+      <artifactId>vertx-codegen</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.vertx</groupId>
+      <artifactId>vertx-service-proxy</artifactId>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
@@ -61,6 +79,9 @@
           <configuration>
             <source>1.8</source>
             <target>1.8</target>
+            <annotationProcessors>
+              <annotationProcessor>io.vertx.codegen.CodeGenProcessor</annotationProcessor>
+            </annotationProcessors>
           </configuration>
         </plugin>
       </plugins>
