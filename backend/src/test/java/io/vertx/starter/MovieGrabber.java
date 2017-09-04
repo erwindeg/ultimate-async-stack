@@ -18,7 +18,7 @@ public class MovieGrabber extends AbstractVerticle {
     String api_key = System.getenv("API_KEY");
 
     HttpClient client = vertx.createHttpClient();
-    client.getAbs("https://api.themoviedb.org/3/discover/movie?api_key="+api_key+"&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=27", result -> {
+    client.getAbs("https://api.themoviedb.org/3/discover/movie?api_key="+api_key+"&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=3&with_genres=27", result -> {
       result.bodyHandler(resultBody -> {
         String resultBodyString = resultBody.getString(0, resultBody.length());
         JsonObject json = new JsonObject(resultBodyString);
