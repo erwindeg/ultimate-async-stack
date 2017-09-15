@@ -23,7 +23,7 @@ public class WebSocketClientTest extends AbstractVerticle {
       });
       JsonObject request = new JsonObject();
       request.put("action", "search");
-      request.put("body", "Annabelle");
+      request.put("body", "the");
       websocket.writeTextMessage(request.toString());
       vertx.setTimer(1000, i -> {
         JsonObject request2 = new JsonObject();

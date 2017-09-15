@@ -48,7 +48,7 @@ public class MovieService {
   public Observable<JsonObject> findMovies(String keyword) {
     return Observable.<JsonObject>create(emitter -> {
 
-      mongoClient.findBatch("movies", new JsonObject().put("title", new JsonObject().put("$regex",".*"+keyword+".*").put("$options","i")), ar -> {
+      mongoClient.findBatch("movies", new JsonObject().put("$or", new JsonArray().add(new JsonObject().put("title", new JsonObject().put("$regex", ".*" + keyword + ".*").put("$options", "i"))).add(new JsonObject().put("overview", new JsonObject().put("$regex", ".*" + keyword + ".*").put("$options", "i")))), ar -> {
         if (ar.succeeded()) {
           JsonObject result = ar.result();
           if (result == null) {
