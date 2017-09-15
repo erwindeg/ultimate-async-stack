@@ -14,4 +14,8 @@ export class MovieComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  goToMovie(id: number) {
+    console.log('got: ', id);
+  }
 }
