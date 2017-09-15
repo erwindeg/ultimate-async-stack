@@ -2,6 +2,7 @@ package io.vertx.starter.ws;
 
 import io.vertx.core.Handler;
 import io.vertx.core.json.DecodeException;
+import io.vertx.core.json.Json;
 import io.vertx.core.json.JsonObject;
 import io.vertx.rxjava.core.http.ServerWebSocket;
 import io.vertx.starter.movies.MovieService;
@@ -24,22 +25,23 @@ public class WebSocketHandler implements Handler<ServerWebSocket> {
 
   @Override
   public void handle(ServerWebSocket ws) {
-    ws.writeTextMessage("connected");
+    ws.writeTextMessage(new JsonObject().put("status","connected").encode());
     ws.textMessageHandler(message -> {
       try {
-        JsonObject request = new JsonObject(message);
-        if ("search".equals(request.getString("action"))) {  //TODO: implement some nice routing
+        WSAction action = Json.decodeValue(message, WSAction.class);
+        System.out.println(action.getAction());
+        if (action.isSearch()) {
           Subscription existingSearch = subscriptions.get(ws.textHandlerID());
           if (existingSearch != null) {
             existingSearch.unsubscribe();
           }
-          Subscription newSearch = movieService.findMovies(request.getString("body")).subscribe(movie -> {
-            ws.writeTextMessage(movie.toString());
+          Subscription newSearch = movieService.findMovies(action.getBody()).subscribe(movie -> {
+            ws.writeTextMessage(movie.encode());
           });
           subscriptions.put(ws.textHandlerID(), newSearch);
         }
       } catch (DecodeException e) {
-        ws.writeTextMessage("invalid request");
+        ws.writeTextMessage(new JsonObject().put("status","invalid request").encode());
       }
     });
   }

@@ -25,11 +25,11 @@ public class MovieRestService {
 
       if(keyword == null){
         this.movieService.findAllMovies().toList().subscribe(movies -> {
-          rc.response().end(new JsonArray(movies).toString());
+          rc.response().end(new JsonArray(movies).encode());
         });
       } else {
         this.movieService.findMovies(keyword).toList().subscribe(movies -> {
-          rc.response().end(new JsonArray(movies).toString());
+          rc.response().end(new JsonArray(movies).encode());
         });
       }
     });
@@ -37,7 +37,7 @@ public class MovieRestService {
     apiRouter.get("/movies/:id").handler(rc -> {
       String id = rc.request().getParam("id");
       this.movieService.findMovie(id).subscribe(movie -> {
-        rc.response().end(movie.toString());
+        rc.response().end(movie.encode());
       });
     });
 

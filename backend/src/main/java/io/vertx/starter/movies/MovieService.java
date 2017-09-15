@@ -40,7 +40,7 @@ public class MovieService {
   }
 
   private JsonObject convertMovie(JsonObject movie) {
-      JsonObject movieDTO = new JsonObject(movie.toString());
+      JsonObject movieDTO = new JsonObject(movie.encode());
       movieDTO.put("poster_path",POSTER_BASE_URL + movie.getString("poster_path"));
       return movieDTO;
   }
