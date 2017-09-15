@@ -2,14 +2,15 @@ import 'hammerjs';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 import {
   MdButtonModule,
   MdCardModule,
   MdCheckboxModule,
   MdChipsModule,
   MdInputModule,
-  MdToolbarModule
+  MdToolbarModule,
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
@@ -21,6 +22,7 @@ import { MoviesComponent } from './movies/movies.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AppRoutingModule } from "./app-routing.module";
 import { MovieService } from "./movies/movie.service";
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -30,10 +32,12 @@ import { MovieService } from "./movies/movie.service";
     MovieRatingComponent,
     MovieGenresComponent,
     MoviesComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
