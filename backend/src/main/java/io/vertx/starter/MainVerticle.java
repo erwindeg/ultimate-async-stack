@@ -41,17 +41,11 @@ public class MainVerticle extends AbstractVerticle {
     corsHandler.allowedHeader("Authorization");
     corsHandler.allowedHeader("Content-Type");
     corsHandler.allowedHeader("Authorization");
-
     corsHandler.allowedHeader("www-authenticate");
-
     corsHandler.allowedHeader("Content-Type");
-
     corsHandler.allowedHeader("Access-Control-Request-Method");
-
     corsHandler.allowedHeader("Access-Control-Allow-Credentials");
-
     corsHandler.allowedHeader("Access-Control-Allow-Origin");
-
     corsHandler.allowedHeader("Access-Control-Allow-Headers");
     return corsHandler;
   }
