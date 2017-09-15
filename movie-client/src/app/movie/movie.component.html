@@ -3,19 +3,18 @@
     {{ movie.title }}
   </md-card-title>
   <md-card-subtitle>
-    {{ movie.year }} | {{ movie.runTime }}
+    {{ movie.release_date | date }}
   </md-card-subtitle>
-  <img md-card-image src="{{ movie.poster }}">
+  <img md-card-image src="{{ movie.poster_path }}">
   <md-card-content>
     <app-movie-genres [genres]="movie.genres"></app-movie-genres>
-    <!-- todo description -->
     <p>
-      {{ movie.description }}
+      {{ movie.overview }}
     </p>
-    <app-movie-rating [rating]="movie.rating"></app-movie-rating>
+    <app-movie-rating [rating]="movie.vote_average"></app-movie-rating>
   </md-card-content>
   <md-card-actions>
-    <button (click)="goToMovie(movie.id)"
+    <button (click)="goToMovie(movie._id)"
             md-button>Details
     </button>
     <button md-button>Rate</button>
