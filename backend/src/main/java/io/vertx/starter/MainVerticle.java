@@ -26,8 +26,8 @@ public class MainVerticle extends AbstractVerticle {
 
     HttpServer server = vertx.createHttpServer();
     Router router = Router.router(vertx);
-    router.mountSubRouter("/api",new MovieRestService(movieService,vertx).getRouter());
     router.route().handler(createCorsHandler());
+    router.mountSubRouter("/api",new MovieRestService(movieService,vertx).getRouter());
     server.websocketHandler(new WebSocketHandler(movieService));
     server.requestHandler(router::accept).listen(8080);
   }
