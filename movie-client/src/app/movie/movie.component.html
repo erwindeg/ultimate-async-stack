@@ -15,7 +15,9 @@
     <app-movie-rating [rating]="movie.rating"></app-movie-rating>
   </md-card-content>
   <md-card-actions>
-    <button md-button>Details</button>
+    <button (click)="goToMovie(movie.id)"
+            md-button>Details
+    </button>
     <button md-button>Rate</button>
   </md-card-actions>
 </md-card>
