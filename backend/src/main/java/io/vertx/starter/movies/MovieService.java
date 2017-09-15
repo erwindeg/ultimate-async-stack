@@ -40,9 +40,12 @@ public class MovieService {
   }
 
   private JsonObject convertMovie(JsonObject movie) {
-      JsonObject movieDTO = new JsonObject(movie.encode());
-      movieDTO.put("poster_path",POSTER_BASE_URL + movie.getString("poster_path"));
-      return movieDTO;
+    JsonObject movieDTO = new JsonObject(movie.encode());
+    movieDTO.put("poster_path", POSTER_BASE_URL + movie.getString("poster_path"));
+    JsonArray genres = new JsonArray();
+    movieDTO.put("genres", genres);
+    movie.getJsonArray("genre_ids").stream().map(genreID -> Genre.genres.get(genreID)).forEach(genre -> genres.add(genre));
+    return movieDTO;
   }
 
   public Observable<JsonObject> findMovies(String keyword) {
@@ -66,12 +69,12 @@ public class MovieService {
     }, Emitter.BackpressureMode.BUFFER).map(this::convertMovie);
   }
 
-  public void saveMovies(JsonArray movies){
-    movies.forEach(movie ->  mongoClient.save("movies",(JsonObject) movie, System.out::println));
+  public void saveMovies(JsonArray movies) {
+    movies.forEach(movie -> mongoClient.save("movies", (JsonObject) movie, System.out::println));
   }
 
 
   public Single<JsonObject> findMovie(String id) {
-      return mongoClient.rxFindOne("movies", new JsonObject().put("_id",id), new JsonObject());
+    return mongoClient.rxFindOne("movies", new JsonObject().put("_id", id), new JsonObject());
   }
 }
