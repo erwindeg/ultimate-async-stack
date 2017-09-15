@@ -15,7 +15,7 @@ import rx.Single;
  */
 public class MovieService {
 
-  private static final String POSTER_BASE_URL = "http://image.tmdb.org/t/p/original/";
+  private static final String POSTER_BASE_URL = "http://image.tmdb.org/t/p/original";
   MongoClient mongoClient;
 
   public MovieService(Vertx vertx) {
@@ -36,7 +36,11 @@ public class MovieService {
           emitter.onError(ar.cause());
         }
       });
-    }, Emitter.BackpressureMode.BUFFER);
+    }, Emitter.BackpressureMode.BUFFER).map(movie -> {
+      JsonObject movieDTO = new JsonObject(movie.toString());
+      movieDTO.put("poster_path",POSTER_BASE_URL + movie.getString("poster_path"));
+      return movieDTO;
+    });
   }
 
   public Observable<JsonObject> findMovies(String keyword) {
