@@ -5,7 +5,7 @@ docker run -p 27017:27017 -d mongo
 From the backend folder run
 mongoimport --db MOVIE_DB --collection movies --file movies.json  //TODO: needs mongo installed, create
 java class for this which reads from file and stores in mongo
-
+§
 # Starting the server
 Run MainVerticle.java
 
@@ -21,7 +21,7 @@ search for movies by their title
 Connect to ws://localhost:8080.
 Send a request in json:
 {
-  action : "search",
+  action : "movies",
   body : "keyword"
 }
 
