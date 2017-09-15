@@ -36,11 +36,13 @@ public class MovieService {
           emitter.onError(ar.cause());
         }
       });
-    }, Emitter.BackpressureMode.BUFFER).map(movie -> {
+    }, Emitter.BackpressureMode.BUFFER).map(this::convertMovie);
+  }
+
+  private JsonObject convertMovie(JsonObject movie) {
       JsonObject movieDTO = new JsonObject(movie.toString());
       movieDTO.put("poster_path",POSTER_BASE_URL + movie.getString("poster_path"));
       return movieDTO;
-    });
   }
 
   public Observable<JsonObject> findMovies(String keyword) {
@@ -58,11 +60,7 @@ public class MovieService {
           emitter.onError(ar.cause());
         }
       });
-    }, Emitter.BackpressureMode.BUFFER).map(movie -> {
-        JsonObject movieDTO = new JsonObject(movie.toString());
-        movieDTO.put("poster_path",POSTER_BASE_URL + movie.getString("poster_path"));
-        return movieDTO;
-    });
+    }, Emitter.BackpressureMode.BUFFER).map(this::convertMovie);
   }
 
   public void saveMovies(JsonArray movies){
