@@ -2,6 +2,7 @@ import 'hammerjs';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {HttpClientModule} from '@angular/common/http';
 import {
   MdButtonModule,
   MdCardModule,
@@ -19,6 +20,7 @@ import { MovieGenresComponent } from './movie-genres/movie-genres.component';
 import { MoviesComponent } from './movies/movies.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AppRoutingModule } from "./app-routing.module";
+import { MovieService } from "./movies/movie.service";
 
 @NgModule({
   declarations: [
@@ -31,9 +33,10 @@ import { AppRoutingModule } from "./app-routing.module";
     PageNotFoundComponent
   ],
   imports: [
-    AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
+    AppRoutingModule,
     MdButtonModule,
     MdCheckboxModule,
     MdInputModule,
@@ -41,7 +44,7 @@ import { AppRoutingModule } from "./app-routing.module";
     MdChipsModule,
     MdToolbarModule
   ],
-  providers: [],
+  providers: [MovieService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

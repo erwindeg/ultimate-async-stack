@@ -1,10 +1,9 @@
 export class Movie {
-  id: number;
+  _id: number;
   title: string;
-  rating: number;
-  description: string;
+  vote_average: number;
+  overview: string;
   genres: string[];
-  poster: string;
-  year: string;
-  runTime: string;
+  poster_path: string;
+  release_date: string;
 }

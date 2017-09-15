@@ -13,10 +13,11 @@ export class MovieRatingComponent implements OnInit {
 
   ngOnInit() {
     this.points = [];
+    const stars = Math.round(this.rating) / 2;
     for (let i: number = 0; i < 5; i++) {
-      if(i + 0.5 === this.rating) {
+      if(i + 0.5 === stars) {
         this.points.push(1);
-      } else if(i < this.rating) {
+      } else if(i < stars) {
         this.points.push(2);
       } else {
         this.points.push(0);
