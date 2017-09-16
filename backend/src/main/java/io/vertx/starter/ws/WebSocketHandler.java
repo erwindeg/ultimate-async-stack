@@ -29,21 +29,18 @@ public class WebSocketHandler implements Handler<ServerWebSocket> {
     ws.textMessageHandler(message -> {
       try {
         WSAction action = Json.decodeValue(message, WSAction.class);
-        System.out.println(action.getAction());
+
         if (action.isSearch()) {
           Subscription existingSearch = subscriptions.get(ws.textHandlerID());
           if (existingSearch != null) {
             existingSearch.unsubscribe();
           }
+
           Subscription newSearch = movieService.findMovies(action.getBody()).subscribe(movie -> {
-            try {
-              Thread.sleep(300);
-            } catch (InterruptedException e) {
-              e.printStackTrace();
-            }
             ws.writeTextMessage(movie.encode());
           });
           subscriptions.put(ws.textHandlerID(), newSearch);
+
         }
       } catch (DecodeException e) {
         ws.writeTextMessage(new JsonObject().put("status","invalid request").encode());
@@ -52,4 +49,4 @@ public class WebSocketHandler implements Handler<ServerWebSocket> {
   }
 }
 
-  //Observable observable = Observable.interval(1000, TimeUnit.MILLISECONDS).take(numbers.length).map(t -> numbers[t.intValue()]);
+
