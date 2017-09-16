@@ -25,28 +25,36 @@ public class WebSocketHandler implements Handler<ServerWebSocket> {
 
   @Override
   public void handle(ServerWebSocket ws) {
-    ws.writeTextMessage(new JsonObject().put("status","connected").encode());
-    ws.textMessageHandler(message -> {
-      try {
-        WSAction action = Json.decodeValue(message, WSAction.class);
-
-        if (action.isSearch()) {
-          Subscription existingSearch = subscriptions.get(ws.textHandlerID());
-          if (existingSearch != null) {
-            existingSearch.unsubscribe();
-          }
-
-          Subscription newSearch = movieService.findMovies(action.getBody()).subscribe(movie -> {
-            ws.writeTextMessage(movie.encode());
-          });
-          subscriptions.put(ws.textHandlerID(), newSearch);
-
-        }
-      } catch (DecodeException e) {
-        ws.writeTextMessage(new JsonObject().put("status","invalid request").encode());
-      }
-    });
+    ws.writeTextMessage(new JsonObject().put("status", "connected").encode());
+    ws.textMessageHandler(message -> search(message,ws));
   }
+
+  private void search(String message, ServerWebSocket ws) {
+      WSAction action = null;
+
+      try {
+        action = Json.decodeValue(message, WSAction.class);
+      } catch (DecodeException e) {
+        ws.writeTextMessage(new JsonObject().put("status", "invalid request").encode());
+      }
+
+      if (action != null && action.isSearch()) {
+        Subscription existingSearch = subscriptions.get(ws.textHandlerID());
+        if (existingSearch != null) {
+          existingSearch.unsubscribe();
+        }
+
+        Subscription newSearch = movieService.findMovies(action.getBody()).subscribe(movie -> {
+          ws.writeTextMessage(movie.encode());
+        });
+        subscriptions.put(ws.textHandlerID(), newSearch);
+      }
+
+  }
+
+
+
+
 }
 
 
