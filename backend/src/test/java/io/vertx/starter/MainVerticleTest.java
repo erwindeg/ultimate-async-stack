@@ -8,12 +8,12 @@ import org.junit.runner.RunWith;
 public class MainVerticleTest {
 
 //  private Vertx vertx;
-//  private MainVerticle mainVerticle;
+//  private MainWebVerticle mainVerticle;
 //
 //  @Before
 //  public void setUp(TestContext tc) {
 //    this.vertx = Vertx.vertx();
-//    this.mainVerticle = new MainVerticle();
+//    this.mainVerticle = new MainWebVerticle();
 //    vertx.deployVerticle(mainVerticle, tc.asyncAssertSuccess());
 //  }
 //

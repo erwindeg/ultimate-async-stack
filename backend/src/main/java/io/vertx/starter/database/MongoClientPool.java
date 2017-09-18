@@ -25,7 +25,6 @@ public class MongoClientPool {
         dbPassword = System.getProperty("MONGODB_PASSWORD");
     }
 
-  //TODO: explain shared nature of client
     public MongoClient getInstance() {
        return MongoClient.createShared(vertx, new JsonObject()
                 .put("connection_string", "mongodb://" + (databaseHost != null ? databaseHost : "localhost") + ":" + (databasePort != null ? databasePort : 27017))

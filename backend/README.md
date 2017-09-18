@@ -34,12 +34,9 @@ Example:
 "poster_path": "/i9GUSgddIqrroubiLsvvMRYyRy0.jpg",
 "original_language": "en",
 "original_title": "The Dark Tower",
-"genre_ids": [
-28,
-37,
-878,
-14,
-27
+"genres": [
+"Horror",
+"Romance"
 ],
 "backdrop_path": "/2n7Zn6WxJ76ccOwnuQHuhSFMbqt.jpg",
 "adult": false,
@@ -48,4 +45,9 @@ Example:
 }
 ]
 
+# Instructions for MongoDB without Docker
+install Mongodb 3
+mkdir data
+mongod -dbpath data
+mongoimport --host localhost --db MOVIE_DB --collection movies --type json --file /movies.json
 

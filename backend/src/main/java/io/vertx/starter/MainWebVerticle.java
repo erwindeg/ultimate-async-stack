@@ -12,11 +12,11 @@ import io.vertx.starter.api.MovieRestService;
 import io.vertx.starter.movies.MovieService;
 import io.vertx.starter.ws.WebSocketHandler;
 
-public class MainVerticle extends AbstractVerticle {
+public class MainWebVerticle extends AbstractVerticle {
 
   public static void main(String[] args) {
     Vertx vertx = Vertx.vertx();
-    RxHelper.deployVerticle(vertx, new MainVerticle());
+    RxHelper.deployVerticle(vertx, new MainWebVerticle());
   }
 
 

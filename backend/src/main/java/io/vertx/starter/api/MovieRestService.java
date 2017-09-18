@@ -1,6 +1,7 @@
 package io.vertx.starter.api;
 
 import io.vertx.core.json.JsonArray;
+import io.vertx.core.json.JsonObject;
 import io.vertx.rxjava.core.Vertx;
 import io.vertx.rxjava.ext.web.Router;
 import io.vertx.starter.movies.MovieService;
@@ -39,6 +40,11 @@ public class MovieRestService {
       this.movieService.findMovie(id).subscribe(movie -> {
         rc.response().end(movie.encode());
       });
+    });
+
+    apiRouter.post("/movies").handler(rc -> {
+      JsonObject movie = rc.getBodyAsJson();
+      this.movieService.saveMovie(movie);
     });
 
     return apiRouter;
