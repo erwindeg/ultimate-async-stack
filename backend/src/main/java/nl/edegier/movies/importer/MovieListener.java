@@ -16,6 +16,10 @@ public class MovieListener extends AbstractVerticle {
 
   @Override
   public void start() throws Exception {
-    vertx.eventBus().consumer("movies", message -> movieService.saveMovie((JsonObject) message.body()));
+    vertx.eventBus().consumer("movies", message -> movieService.saveMovie((JsonObject) message.body(),result ->{
+      if(result.failed()){
+        result.cause().printStackTrace();
+      }
+    }));
   }
 }

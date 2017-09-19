@@ -1,5 +1,7 @@
 package nl.edegier.movies.movies;
 
+import io.vertx.core.AsyncResult;
+import io.vertx.core.Handler;
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 import io.vertx.rxjava.core.Vertx;
@@ -64,16 +66,12 @@ public class MovieService {
     }, Emitter.BackpressureMode.BUFFER).map(this::convertMovie);
   }
 
-  public void saveMovies(JsonArray movies) {
-    movies.forEach(movie -> mongoClient.save("movies", (JsonObject) movie, System.out::println));
+  public void saveMovies(JsonArray movies, Handler<AsyncResult<String>> handler) {
+    movies.forEach(movie -> mongoClient.save("movies", (JsonObject) movie, handler::handle));
   }
 
-  public void saveMovie(JsonObject movie) {
-     mongoClient.save("movies", movie, result ->{
-       if(result.failed()){
-         result.cause().printStackTrace();
-       }
-     });
+  public void saveMovie(JsonObject movie, Handler<AsyncResult<String>> handler) {
+     mongoClient.save("movies", movie, handler::handle);
   }
 
 
@@ -87,7 +85,9 @@ public class MovieService {
     movieDTO.put("poster_path", POSTER_BASE_URL + movie.getString("poster_path"));
     JsonArray genres = new JsonArray();
     movieDTO.put("genres", genres);
-    movie.getJsonArray("genre_ids").stream().map(genreID -> Genre.genres.get(genreID)).forEach(genre -> genres.add(genre));
+    if(movie.getJsonArray("genre_ids") != null){
+      movie.getJsonArray("genre_ids").stream().map(genreID -> Genre.genres.get(genreID)).forEach(genre -> genres.add(genre));
+    }
     return movieDTO;
   }
 }

@@ -43,8 +43,15 @@ public class MovieRestService {
 
     apiRouter.post("/movies").handler(rc -> {
       JsonObject movie = rc.getBodyAsJson();
-      this.movieService.saveMovie(movie);
-      rc.response().end();
+      this.movieService.saveMovie(movie, result ->{
+        if(result.succeeded()){
+          rc.response().end(result.result());
+        } else {
+          result.cause().printStackTrace();
+          rc.response().setStatusCode(500).end();
+        }
+      });
+
     });
 
     return apiRouter;

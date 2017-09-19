@@ -23,7 +23,11 @@ public class MovieGrabber extends AbstractVerticle {
         String resultBodyString = resultBody.getString(0, resultBody.length());
         JsonObject json = new JsonObject(resultBodyString);
         JsonArray movies = json.getJsonArray("results");
-        new MovieService(vertx).saveMovies(movies);
+        new MovieService(vertx).saveMovies(movies, saveResult ->{
+          if(saveResult.failed()){
+            saveResult.cause().printStackTrace();
+          }
+        });
         System.out.println(movies);
       });
     }).end();
