@@ -1,4 +1,4 @@
-package io.vertx.starter;
+package nl.edegier.movies;
 
 import io.vertx.ext.unit.junit.VertxUnitRunner;
 import org.junit.Test;

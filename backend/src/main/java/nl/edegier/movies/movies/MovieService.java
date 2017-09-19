@@ -1,10 +1,10 @@
-package io.vertx.starter.movies;
+package nl.edegier.movies.movies;
 
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 import io.vertx.rxjava.core.Vertx;
 import io.vertx.rxjava.ext.mongo.MongoClient;
-import io.vertx.starter.database.MongoClientPool;
+import nl.edegier.movies.database.MongoClientPool;
 import rx.Emitter;
 import rx.Observable;
 import rx.Single;
@@ -22,6 +22,10 @@ public class MovieService {
     this.mongoClient = new MongoClientPool(vertx).getInstance();
   }
 
+  /**
+   * Returns an Observable which returns all movies from the datastore
+   * @return
+   */
   public Observable<JsonObject> findAllMovies() {
     return Observable.<JsonObject>create(emitter -> {
       mongoClient.findBatch("movies", new JsonObject(), ar -> {

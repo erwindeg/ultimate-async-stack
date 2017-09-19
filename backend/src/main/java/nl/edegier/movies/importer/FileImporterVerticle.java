@@ -1,4 +1,4 @@
-package io.vertx.starter.importer;
+package nl.edegier.movies.importer;
 
 
 import io.vertx.core.VertxOptions;
@@ -9,7 +9,7 @@ import io.vertx.rxjava.core.Vertx;
 import io.vertx.rxjava.core.file.AsyncFile;
 import io.vertx.rxjava.core.file.FileSystem;
 import io.vertx.rxjava.core.parsetools.RecordParser;
-import io.vertx.starter.movies.MovieService;
+import nl.edegier.movies.movies.MovieService;
 
 /**
  * Created by Erwin on 16/09/2017.

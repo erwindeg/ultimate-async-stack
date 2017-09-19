@@ -1,10 +1,10 @@
-package io.vertx.starter.api;
+package nl.edegier.movies.api;
 
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 import io.vertx.rxjava.core.Vertx;
 import io.vertx.rxjava.ext.web.Router;
-import io.vertx.starter.movies.MovieService;
+import nl.edegier.movies.movies.MovieService;
 
 /**
  * Created by Erwin on 04/09/2017.

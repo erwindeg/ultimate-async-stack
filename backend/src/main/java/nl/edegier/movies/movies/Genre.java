@@ -1,4 +1,4 @@
-package io.vertx.starter.movies;
+package nl.edegier.movies.movies;
 
 import java.util.HashMap;
 import java.util.Map;

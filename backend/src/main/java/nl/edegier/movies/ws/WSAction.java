@@ -1,4 +1,4 @@
-package io.vertx.starter.ws;
+package nl.edegier.movies.ws;
 
 /**
  * Created by Erwin on 15/09/2017.

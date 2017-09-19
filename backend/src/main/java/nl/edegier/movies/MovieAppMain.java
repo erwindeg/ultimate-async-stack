@@ -1,4 +1,4 @@
-package io.vertx.starter;
+package nl.edegier.movies;
 
 import io.vertx.core.Handler;
 import io.vertx.core.VertxOptions;
@@ -10,10 +10,10 @@ import io.vertx.rxjava.core.http.HttpServer;
 import io.vertx.rxjava.ext.web.Router;
 import io.vertx.rxjava.ext.web.handler.BodyHandler;
 import io.vertx.rxjava.ext.web.handler.CorsHandler;
-import io.vertx.starter.api.MovieRestService;
-import io.vertx.starter.importer.MovieListener;
-import io.vertx.starter.movies.MovieService;
-import io.vertx.starter.ws.MovieWebSocketHandler;
+import nl.edegier.movies.api.MovieRestService;
+import nl.edegier.movies.importer.MovieListener;
+import nl.edegier.movies.movies.MovieService;
+import nl.edegier.movies.ws.MovieWebSocketHandler;
 
 public class MovieAppMain extends AbstractVerticle {
 

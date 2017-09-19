@@ -1,4 +1,4 @@
-package io.vertx.starter.database;
+package nl.edegier.movies.database;
 
 import io.vertx.rxjava.core.Vertx;
 import io.vertx.core.json.JsonObject;

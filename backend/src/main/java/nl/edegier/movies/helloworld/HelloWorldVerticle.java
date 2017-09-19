@@ -1,4 +1,4 @@
-package io.vertx.starter.helloworld;
+package nl.edegier.movies.helloworld;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Vertx;

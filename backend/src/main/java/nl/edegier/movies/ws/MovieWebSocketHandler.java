@@ -1,11 +1,11 @@
-package io.vertx.starter.ws;
+package nl.edegier.movies.ws;
 
 import io.vertx.core.Handler;
 import io.vertx.core.json.DecodeException;
 import io.vertx.core.json.Json;
 import io.vertx.core.json.JsonObject;
 import io.vertx.rxjava.core.http.ServerWebSocket;
-import io.vertx.starter.movies.MovieService;
+import nl.edegier.movies.movies.MovieService;
 import rx.Subscription;
 
 import java.util.HashMap;

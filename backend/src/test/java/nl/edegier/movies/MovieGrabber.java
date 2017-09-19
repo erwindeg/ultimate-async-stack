@@ -1,11 +1,11 @@
-package io.vertx.starter;
+package nl.edegier.movies;
 
 import io.vertx.rxjava.core.AbstractVerticle;
 import io.vertx.rxjava.core.Vertx;
 import io.vertx.rxjava.core.http.HttpClient;
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
-import io.vertx.starter.movies.MovieService;
+import nl.edegier.movies.movies.MovieService;
 
 
 /**

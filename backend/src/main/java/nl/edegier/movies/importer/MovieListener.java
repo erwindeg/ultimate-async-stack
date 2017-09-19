@@ -1,8 +1,8 @@
-package io.vertx.starter.importer;
+package nl.edegier.movies.importer;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.json.JsonObject;
-import io.vertx.starter.movies.MovieService;
+import nl.edegier.movies.movies.MovieService;
 
 /**
  * Created by Erwin on 18/09/2017.

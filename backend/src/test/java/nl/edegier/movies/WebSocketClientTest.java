@@ -1,4 +1,4 @@
-package io.vertx.starter;
+package nl.edegier.movies;
 
 import io.vertx.core.json.JsonObject;
 import io.vertx.rxjava.core.AbstractVerticle;

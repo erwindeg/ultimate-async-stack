@@ -1,11 +1,11 @@
-package io.vertx.starter;
+package nl.edegier.movies;
 
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.unit.Async;
 import io.vertx.ext.unit.TestContext;
 import io.vertx.ext.unit.junit.VertxUnitRunner;
 import io.vertx.rxjava.core.Vertx;
-import io.vertx.starter.movies.MovieService;
+import nl.edegier.movies.movies.MovieService;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -24,7 +24,6 @@ public class MovieServiceTest {
     this.vertx = Vertx.vertx();
     this.movieService = new MovieService(vertx);
   }
-
   @After
   public void tearDown(TestContext context) {
     vertx.close(context.asyncAssertSuccess());
