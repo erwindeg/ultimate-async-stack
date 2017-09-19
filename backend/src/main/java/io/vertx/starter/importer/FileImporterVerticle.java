@@ -1,6 +1,7 @@
-package io.vertx.starter;
+package io.vertx.starter.importer;
 
 
+import io.vertx.core.VertxOptions;
 import io.vertx.core.file.OpenOptions;
 import io.vertx.rxjava.core.AbstractVerticle;
 import io.vertx.rxjava.core.RxHelper;
@@ -13,7 +14,7 @@ import io.vertx.starter.movies.MovieService;
 /**
  * Created by Erwin on 16/09/2017.
  */
-public class MainImporterVerticle extends AbstractVerticle{
+public class FileImporterVerticle extends AbstractVerticle{
 
   MovieService movieService;
   final int max = 400;
@@ -23,8 +24,9 @@ public class MainImporterVerticle extends AbstractVerticle{
   boolean isReading;
 
   public static void main(String[] args) {
-    Vertx vertx = Vertx.vertx();
-    RxHelper.deployVerticle(vertx, new MainImporterVerticle());
+    Vertx.clusteredVertx(new VertxOptions(), res -> {
+      RxHelper.deployVerticle(res.result(), new FileImporterVerticle());
+    });
   }
 
   @Override
@@ -36,8 +38,7 @@ public class MainImporterVerticle extends AbstractVerticle{
   private void readFile() {
     this.isReading = true;
     final RecordParser parser = RecordParser.newDelimited("\n", movie -> {
-      System.out.println(movie);
-      movieService.saveMovie(movie.toJsonObject());
+      vertx.eventBus().send("movies",movie.toJsonObject());
     });
     FileSystem fs = vertx.fileSystem();
     fs.open(FILE_NAME, new OpenOptions(), contents -> {

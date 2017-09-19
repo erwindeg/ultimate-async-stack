@@ -1,32 +1,38 @@
 package io.vertx.starter;
 
 import io.vertx.core.Handler;
+import io.vertx.core.VertxOptions;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.rxjava.core.AbstractVerticle;
 import io.vertx.rxjava.core.RxHelper;
 import io.vertx.rxjava.core.Vertx;
 import io.vertx.rxjava.core.http.HttpServer;
 import io.vertx.rxjava.ext.web.Router;
+import io.vertx.rxjava.ext.web.handler.BodyHandler;
 import io.vertx.rxjava.ext.web.handler.CorsHandler;
 import io.vertx.starter.api.MovieRestService;
+import io.vertx.starter.importer.MovieListener;
 import io.vertx.starter.movies.MovieService;
 import io.vertx.starter.ws.WebSocketHandler;
 
-public class MainWebVerticle extends AbstractVerticle {
+public class MovieAppMain extends AbstractVerticle {
 
   public static void main(String[] args) {
-    Vertx vertx = Vertx.vertx();
-    RxHelper.deployVerticle(vertx, new MainWebVerticle());
+    Vertx.clusteredVertx(new VertxOptions(), res -> {
+        RxHelper.deployVerticle(res.result(), new MovieAppMain());
+    });
   }
 
 
   @Override
   public void start() {
     MovieService movieService = new MovieService(vertx);
+    RxHelper.deployVerticle(vertx, new MovieListener(movieService));
 
     HttpServer server = vertx.createHttpServer();
     Router router = Router.router(vertx);
     router.route().handler(createCorsHandler());
+    router.route().handler(BodyHandler.create());
     router.mountSubRouter("/api",new MovieRestService(movieService,vertx).getRouter());
     server.websocketHandler(new WebSocketHandler(movieService));
     server.requestHandler(router::accept).listen(8080);

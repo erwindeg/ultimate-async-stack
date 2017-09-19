@@ -20,7 +20,6 @@ public class MovieRestService {
 
   public Router getRouter(){
     Router apiRouter = Router.router(vertx);
-
     apiRouter.get("/movies").handler(rc -> {
       String keyword = rc.request().getParam("keyword");
 
@@ -45,6 +44,7 @@ public class MovieRestService {
     apiRouter.post("/movies").handler(rc -> {
       JsonObject movie = rc.getBodyAsJson();
       this.movieService.saveMovie(movie);
+      rc.response().end();
     });
 
     return apiRouter;

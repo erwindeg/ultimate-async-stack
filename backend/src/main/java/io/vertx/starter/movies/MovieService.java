@@ -65,7 +65,11 @@ public class MovieService {
   }
 
   public void saveMovie(JsonObject movie) {
-     mongoClient.save("movies", (JsonObject) movie, System.out::println);
+     mongoClient.save("movies", movie, result ->{
+       if(result.failed()){
+         result.cause().printStackTrace();
+       }
+     });
   }
 
 

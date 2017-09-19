@@ -47,6 +47,7 @@ public class WebSocketHandler implements Handler<ServerWebSocket> {
         Subscription newSearch = movieService.findMovies(action.getBody()).subscribe(movie -> {
           ws.writeTextMessage(movie.encode());
         });
+
         subscriptions.put(ws.textHandlerID(), newSearch);
       }
 
