@@ -14,12 +14,12 @@ import java.util.Map;
 /**
  * Created by Erwin on 04/09/2017.
  */
-public class WebSocketHandler implements Handler<ServerWebSocket> {
+public class MovieWebSocketHandler implements Handler<ServerWebSocket> {
   MovieService movieService;
 
   Map<String, Subscription> subscriptions = new HashMap<>();
 
-  public WebSocketHandler(MovieService movieService) {
+  public MovieWebSocketHandler(MovieService movieService) {
     this.movieService = movieService;
   }
 

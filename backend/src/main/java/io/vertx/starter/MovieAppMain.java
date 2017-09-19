@@ -13,7 +13,7 @@ import io.vertx.rxjava.ext.web.handler.CorsHandler;
 import io.vertx.starter.api.MovieRestService;
 import io.vertx.starter.importer.MovieListener;
 import io.vertx.starter.movies.MovieService;
-import io.vertx.starter.ws.WebSocketHandler;
+import io.vertx.starter.ws.MovieWebSocketHandler;
 
 public class MovieAppMain extends AbstractVerticle {
 
@@ -34,7 +34,7 @@ public class MovieAppMain extends AbstractVerticle {
     router.route().handler(createCorsHandler());
     router.route().handler(BodyHandler.create());
     router.mountSubRouter("/api",new MovieRestService(movieService,vertx).getRouter());
-    server.websocketHandler(new WebSocketHandler(movieService));
+    server.websocketHandler(new MovieWebSocketHandler(movieService));
     server.requestHandler(router::accept).listen(8080);
   }
 
