@@ -18,19 +18,23 @@ import rx.Single;
 public class MovieService {
 
   private static final String POSTER_BASE_URL = "http://image.tmdb.org/t/p/original";
-  MongoClient mongoClient;
+  private static final String MOVIES = "movies";
+  private MongoClient mongoClient;
 
   public MovieService(Vertx vertx) {
     this.mongoClient = new MongoClientPool(vertx).getInstance();
   }
 
+  public MovieService(MongoClient mongoClient){
+    this.mongoClient= mongoClient;
+  }
   /**
    * Returns an Observable which returns all movies from the datastore
    * @return
    */
   public Observable<JsonObject> findAllMovies() {
     return Observable.<JsonObject>create(emitter -> {
-      mongoClient.findBatch("movies", new JsonObject(), ar -> {
+      mongoClient.findBatch(MOVIES, new JsonObject(), ar -> {
         if (ar.succeeded()) {
           JsonObject result = ar.result();
           if (result == null) {
@@ -51,7 +55,7 @@ public class MovieService {
       searches.add(new JsonObject().put("title", new JsonObject().put("$regex", ".*" + keyword + ".*").put("$options", "i")));
       searches.add(new JsonObject().put("overview", new JsonObject().put("$regex", ".*" + keyword + ".*").put("$options", "i")));
 
-      mongoClient.findBatch("movies", new JsonObject().put("$or", searches), ar -> {
+      mongoClient.findBatch(MOVIES, new JsonObject().put("$or", searches), ar -> {
         if (ar.succeeded()) {
           JsonObject result = ar.result();
           if (result == null) {
@@ -67,17 +71,17 @@ public class MovieService {
   }
 
   public void saveMovies(JsonArray movies, Handler<AsyncResult<String>> handler) {
-    movies.forEach(movie -> mongoClient.save("movies", (JsonObject) movie, handler::handle));
+    movies.forEach(movie -> mongoClient.save(MOVIES, (JsonObject) movie, handler::handle));
   }
 
   public void saveMovie(JsonObject movie, Handler<AsyncResult<String>> handler) {
-     mongoClient.save("movies", movie, handler::handle);
+     mongoClient.save(MOVIES, movie, handler::handle);
   }
 
 
 
   public Single<JsonObject> findMovie(String id) {
-    return mongoClient.rxFindOne("movies", new JsonObject().put("_id", id), new JsonObject());
+    return mongoClient.rxFindOne(MOVIES, new JsonObject().put("_id", id), new JsonObject());
   }
 
   private JsonObject convertMovie(JsonObject movie) {
