@@ -21,7 +21,6 @@ import { MovieGenresComponent } from './movie-genres/movie-genres.component';
 import { MoviesComponent } from './movies/movies.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AppRoutingModule } from "./app-routing.module";
-import { MovieService } from "./movies/movie.service";
 import { SearchComponent } from './search/search.component';
 
 @NgModule({
@@ -48,7 +47,6 @@ import { SearchComponent } from './search/search.component';
     MdChipsModule,
     MdToolbarModule
   ],
-  providers: [MovieService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
