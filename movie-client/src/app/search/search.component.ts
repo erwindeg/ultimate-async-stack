@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, Subject } from "rxjs";
-import { Movie } from "../movie";
+import { Observable, Subject } from 'rxjs';
+import { Movie } from '../movie';
 
 @Component({
   selector: 'app-search',
@@ -8,7 +8,7 @@ import { Movie } from "../movie";
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
-  private movies: Movie[]; // todo fix type
+  public movies: Movie[];
   private searchTerm$ = new Subject<string>();
 
   constructor() {
@@ -17,9 +17,10 @@ export class SearchComponent implements OnInit {
 
   ngOnInit() {
     this.searchTerm$
+      .filter(term => term.length >= 3)
       .debounceTime(300)
       .distinctUntilChanged()
-      .subscribe(term => this.search(term))
+      .subscribe(term => this.search(term));
   }
 
   searchChanged(term: string) {
@@ -27,20 +28,19 @@ export class SearchComponent implements OnInit {
   }
 
   search(term: string) {
-    this.movies = [];
-    console.log('handle', term);
 
-    if (term.length > 2) {
-      const socket = Observable.webSocket('ws://localhost:8080');
-      socket.subscribe(data => {
-        if (data['_id']) {
-          this.movies.push(<Movie> data);
-        }
-      });
-      socket.next(JSON.stringify({
+    const socket = Observable.webSocket('ws://localhost:8080');
+    socket.subscribe(data => {
+      if (data['_id']) {
+        this.movies.push(<Movie>data);
+      }
+    });
+    socket.next(() => {
+      this.movies = [];
+      JSON.stringify({
         action: 'search',
         body: term
-      }));
-    }
+      });
+    });
   }
 }
