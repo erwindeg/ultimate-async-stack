@@ -28,6 +28,7 @@ export class SearchComponent implements OnInit {
   }
 
   search(term: string) {
+    this.movies = [];
 
     const socket = Observable.webSocket('ws://localhost:8080');
     socket.subscribe(data => {
@@ -35,12 +36,9 @@ export class SearchComponent implements OnInit {
         this.movies.push(<Movie>data);
       }
     });
-    socket.next(() => {
-      this.movies = [];
-      JSON.stringify({
-        action: 'search',
-        body: term
-      });
-    });
+    socket.next(JSON.stringify({
+      action: 'search',
+      body: term
+    }));
   }
 }
