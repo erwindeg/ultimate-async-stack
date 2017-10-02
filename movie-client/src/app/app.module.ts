@@ -21,7 +21,6 @@ import { MovieGenresComponent } from './movie-genres/movie-genres.component';
 import { MoviesComponent } from './movies/movies.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AppRoutingModule } from "./app-routing.module";
-import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +31,6 @@ import { SearchComponent } from './search/search.component';
     MovieGenresComponent,
     MoviesComponent,
     PageNotFoundComponent,
-    SearchComponent
   ],
   imports: [
     BrowserModule,
