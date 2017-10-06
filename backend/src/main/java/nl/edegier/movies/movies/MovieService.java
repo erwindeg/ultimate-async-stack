@@ -9,7 +9,6 @@ import io.vertx.rxjava.ext.mongo.MongoClient;
 import nl.edegier.movies.database.MongoClientPool;
 import rx.Emitter;
 import rx.Observable;
-import rx.Single;
 
 
 /**
@@ -28,26 +27,8 @@ public class MovieService {
   public MovieService(MongoClient mongoClient){
     this.mongoClient= mongoClient;
   }
-  /**
-   * Returns an Observable which returns all movies from the datastore
-   * @return
-   */
-  public Observable<JsonObject> findAllMovies() {
-    return Observable.<JsonObject>create(emitter -> {
-      mongoClient.findBatch(MOVIES, new JsonObject(), ar -> {
-        if (ar.succeeded()) {
-          JsonObject result = ar.result();
-          if (result == null) {
-            emitter.onCompleted();
-          } else {
-            emitter.onNext(result);
-          }
-        } else {
-          emitter.onError(ar.cause());
-        }
-      });
-    }, Emitter.BackpressureMode.BUFFER).map(this::convertMovie);
-  }
+
+  //TODO: create a findAllMovies method
 
   public Observable<JsonObject> findMovies(String keyword) {
     return Observable.<JsonObject>create(emitter -> {
@@ -74,15 +55,8 @@ public class MovieService {
     movies.forEach(movie -> mongoClient.save(MOVIES, (JsonObject) movie, handler::handle));
   }
 
-  public void saveMovie(JsonObject movie, Handler<AsyncResult<String>> handler) {
-     mongoClient.save(MOVIES, movie, handler::handle);
-  }
-
-
-
-  public Single<JsonObject> findMovie(String id) {
-    return mongoClient.rxFindOne(MOVIES, new JsonObject().put("_id", id), new JsonObject());
-  }
+  //TODO: implement saveMovie method
+  //TODO: implement findOne method
 
   private JsonObject convertMovie(JsonObject movie) {
     JsonObject movieDTO = new JsonObject(movie.encode());

@@ -8,6 +8,7 @@ public class WSAction {
   public String body;
 
   public static final String SEARCH_ACTION = "search";
+  public static final String GET_ACTION = "get";
 
   public String getBody() {
     return body;
@@ -29,4 +30,7 @@ public class WSAction {
     return SEARCH_ACTION.equalsIgnoreCase(this.action);
   }
 
+  public boolean isGet() {
+    return GET_ACTION.equalsIgnoreCase(this.action);
+  }
 }

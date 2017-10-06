@@ -11,9 +11,7 @@ import io.vertx.rxjava.ext.web.Router;
 import io.vertx.rxjava.ext.web.handler.BodyHandler;
 import io.vertx.rxjava.ext.web.handler.CorsHandler;
 import nl.edegier.movies.api.MovieRestService;
-import nl.edegier.movies.importer.MovieListener;
 import nl.edegier.movies.movies.MovieService;
-import nl.edegier.movies.ws.MovieWebSocketHandler;
 
 public class MovieAppMain extends AbstractVerticle {
 
@@ -27,14 +25,14 @@ public class MovieAppMain extends AbstractVerticle {
   @Override
   public void start() {
     MovieService movieService = new MovieService(vertx);
-    RxHelper.deployVerticle(vertx, new MovieListener(movieService));
+    //RxHelper.deployVerticle(vertx, new MovieListener(movieService));
 
     HttpServer server = vertx.createHttpServer();
     Router router = Router.router(vertx);
     router.route().handler(createCorsHandler());
     router.route().handler(BodyHandler.create());
     router.mountSubRouter("/api",new MovieRestService(movieService,vertx).getRouter());
-    server.websocketHandler(new MovieWebSocketHandler(movieService));
+    //TODO: add websocketHandler
     server.requestHandler(router::accept).listen(8080);
   }
 
