@@ -28,9 +28,9 @@
 ### b) Create a new Verticle with the name MovieListener which listens to the eventbus and prints the movies on the console.
 
 ## 3. MovieService and MongoDB.
-### a) Create save method with unittest in the MovieService
-### b) Create a method for find by id  in the MovieService
-### c) Create a method for find all movies in the MovieService
+### a) Create save method in the MovieService
+### b) Create a method for find all movies in the MovieService with unittest
+### c) Create a method for find by id  in the MovieService
 ### d) Change the Verticle created in step 2b. It should save each received movie with the MovieService save method.
 ### e) Test with http://localhost:8080/api/movies
 
