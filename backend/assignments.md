@@ -49,7 +49,7 @@ Create a websockets hander which listens for a Json message:
   action : "get"
 }
 When this message is received, it should send all movies back over the websocket connection
-
+You can use WebSocketClientTest to test this (with a little change)
 
 # 7. Websockets Search for Movies
 Create a websockets hander which listens for a Json message:
@@ -58,7 +58,7 @@ Create a websockets hander which listens for a Json message:
   body: "<keyword"
 }
 When this message is received, it should send all movies back that matches the search criterium. Use the public Observable<JsonObject> findMovies(String keyword) method in MovieService.
-
+You can use WebSocketClientTest to test this
 
 ## (Optional) 8. Saving a movie with a POST request
 We are going to build a REST route POST /api/movies to save single movie with the MovieService class
