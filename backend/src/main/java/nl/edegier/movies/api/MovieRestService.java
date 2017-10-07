@@ -18,6 +18,11 @@ public class MovieRestService {
 
   public Router getRouter(){
     Router apiRouter = Router.router(vertx);
+    apiRouter.get("/hello").handler(rc -> {
+      rc.response().end("hello world");
+    });
+
+
     apiRouter.get("/movies").handler(rc -> {
       String keyword = rc.request().getParam("keyword");
 
