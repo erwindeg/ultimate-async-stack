@@ -32,7 +32,7 @@
 ### b) Create a method for find all movies in the MovieService with unittest
 ### c) Create a method for find by id  in the MovieService
 ### d) Change the Verticle created in step 2b. It should save each received movie with the MovieService save method.
-### e) Test with http://localhost:8080/api/movies
+
 
 ## 4. Building a REST route for movie by id
 We are going to build a REST route GET /api/movies/:id to retrieve a single movie with the MovieService class
@@ -40,7 +40,7 @@ We are going to build a REST route GET /api/movies/:id to retrieve a single movi
 ## 6. Search for movies REST
 ### a)We will build a route GET /api/movies We use this to search for all movies
 ### b)We will build a route GET /api/movies?keyword=<keyword>. We use this keyword to search for movies using the public Observable<JsonObject> findMovies(String keyword) method.
-
+### c) Test with http://localhost:8080/api/movies
 
 # 7. Websockets getting started
 [Websockets](http://vertx.io/docs/vertx-core/java/#_websockets)
