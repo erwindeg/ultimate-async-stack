@@ -1,6 +1,5 @@
 package nl.edegier.movies.api;
 
-import io.vertx.core.json.JsonArray;
 import io.vertx.rxjava.core.Vertx;
 import io.vertx.rxjava.ext.web.Router;
 import nl.edegier.movies.movies.MovieService;
@@ -23,9 +22,7 @@ public class MovieRestService {
       String keyword = rc.request().getParam("keyword");
 
       if(keyword == null){
-        this.movieService.findAllMovies().toList().subscribe(movies -> {
-          rc.response().end(new JsonArray(movies).encode());
-        });
+       //TODO: implement find all movies
       } else {
        //TODO: implement search with keyword
       }

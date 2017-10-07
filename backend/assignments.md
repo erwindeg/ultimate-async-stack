@@ -38,9 +38,9 @@
 We are going to build a REST route GET /api/movies/:id to retrieve a single movie with the MovieService class
 
 ## 6. Search for movies REST
-We will build a route GET /api/movies?keyword=<keyword>. We use this keyword to search for movies using the public Observable<JsonObject> findMovies(String keyword) method.
+### a)We will build a route GET /api/movies We use this to search for all movies
+### b)We will build a route GET /api/movies?keyword=<keyword>. We use this keyword to search for movies using the public Observable<JsonObject> findMovies(String keyword) method.
 
-//TODO: Presentation about WS
 
 # 7. Websockets getting started
 [Websockets](http://vertx.io/docs/vertx-core/java/#_websockets)
