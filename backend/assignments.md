@@ -10,7 +10,7 @@
 * mvn clean install
 * docker run -p 27017:27017 mongod
 * Run MainWebVerticle from your IDE
-* go to http://localhost:8080/hello
+* go to http://localhost:8080/api/hello
 
 # Assignments
 [Vert.x documentation](http://vertx.io/docs/vertx-core/java/)
