@@ -8,7 +8,6 @@ import io.vertx.rxjava.core.RxHelper;
 import io.vertx.rxjava.core.Vertx;
 import io.vertx.rxjava.core.file.AsyncFile;
 import io.vertx.rxjava.core.file.FileSystem;
-import io.vertx.rxjava.core.parsetools.RecordParser;
 import nl.edegier.movies.movies.MovieService;
 
 /**
@@ -37,15 +36,17 @@ public class FileImporterVerticle extends AbstractVerticle{
 
   private void readFile() {
     this.isReading = true;
-    final RecordParser parser = RecordParser.newDelimited("\n", movie -> {
-      vertx.eventBus().send("movies",movie.toJsonObject());
-    });
+
+
+
     FileSystem fs = vertx.fileSystem();
     fs.open(FILE_NAME, new OpenOptions(), contents -> {
       if (contents.succeeded()) {
         this.file = contents.result();
         this.file.handler(buffer -> {
-          parser.handle(buffer.copy());
+          //TODO: this buffer holds the contents of the file
+          //we can use a RecordParser to parse this buffer line by line
+          //call the parsers handle method from here.
         });
 
         this.file.endHandler(result -> {

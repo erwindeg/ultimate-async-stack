@@ -25,7 +25,7 @@ public class MovieWebSocketHandler implements Handler<ServerWebSocket> {
 
   @Override
   public void handle(ServerWebSocket ws) {
-    ws.writeTextMessage(new JsonObject().put("status", "connected").encode());
+    //TODO: send a message on connect
     ws.textMessageHandler(message -> search(message,ws));
   }
 
@@ -38,18 +38,13 @@ public class MovieWebSocketHandler implements Handler<ServerWebSocket> {
         ws.writeTextMessage(new JsonObject().put("status", "invalid request").encode());
       }
 
-      if (action != null && action.isSearch()) {
-        Subscription existingSearch = subscriptions.get(ws.textHandlerID());
-        if (existingSearch != null) {
-          existingSearch.unsubscribe();
-        }
-
-        Subscription newSearch = movieService.findMovies(action.getBody()).subscribe(movie -> {
-          ws.writeTextMessage(movie.encode());
-        });
-
-        subscriptions.put(ws.textHandlerID(), newSearch);
-      }
+    if (action != null && action.isGet()) {
+      //TODO: return all movies over the websocket connection
+    } else if (action != null && action.isSearch()) {
+      //TODO: when we get a valid search action we want to search for movies
+      // and return the result over the websocket connection.
+      //BONUS: how do we handle cancelling the old search when we get a new search request?
+    }
 
   }
 

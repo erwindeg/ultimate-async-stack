@@ -3,12 +3,10 @@ import { RouterModule, Routes }  from '@angular/router';
 import { MoviesComponent } from "./movies/movies.component";
 import { MovieComponent } from "./movie/movie.component";
 import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
-import { SearchComponent } from "./search/search.component";
 
 const appRoutes = [
   { path: 'movies', component: MoviesComponent },
   { path: 'movies/:id', component: MovieComponent },
-  { path: 'search', component: SearchComponent },
   { path: '',
     redirectTo: '/movies',
     pathMatch: 'full'
