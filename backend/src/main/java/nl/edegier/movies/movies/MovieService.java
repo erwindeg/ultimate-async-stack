@@ -1,7 +1,5 @@
 package nl.edegier.movies.movies;
 
-import io.vertx.core.AsyncResult;
-import io.vertx.core.Handler;
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 import io.vertx.rxjava.core.Vertx;
@@ -51,9 +49,6 @@ public class MovieService {
     }, Emitter.BackpressureMode.BUFFER).map(this::convertMovie);
   }
 
-  public void saveMovies(JsonArray movies, Handler<AsyncResult<String>> handler) {
-    movies.forEach(movie -> mongoClient.save(MOVIES, (JsonObject) movie, handler::handle));
-  }
 
   //TODO: implement saveMovie method
   //TODO: implement findOne method
