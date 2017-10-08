@@ -64,6 +64,10 @@ Create a websockets hander which listens for a Json message:
 When this message is received, it should send all movies back that matches the search criterium. Use the public Observable<JsonObject> findMovies(String keyword) method in MovieService.
 You can use WebSocketClientTest to test this
 
+## 8. Subscription cancelling
+In the current version, once you launch a new search request on the websocket, it keeps returning the previous result.
+We can fix this by storing the current search as an RX Subscription, which we unsubscribe from when a new search is started.
+
 ## (Optional) 8. Saving a movie with a POST request, find movie by id
 a) We are going to build a REST route POST /api/movies to save single movie with the MovieService class
 b) Create a method for find by id  in the MovieService
