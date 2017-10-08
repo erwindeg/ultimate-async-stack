@@ -16,33 +16,34 @@
 [Vert.x documentation](http://vertx.io/docs/vertx-core/java/)
 [Eventbus](http://vertx.io/docs/vertx-core/java/#event_bus)
 ## 1. Hello World
-### a) Create a new Verticle which displays "Hello World" on the console. You need to add a main method to deploy this verticle.
-### b) Change the Verticle, it should send "Hello World over the eventbus".
-### c) Add functionality to this Verticle to listen to the eventbus and print the contents on the console.
+a) Create a new Verticle which displays "Hello World" on the console. You need to add a main method to deploy this verticle.
+b) Change the Verticle, it should send "Hello World over the eventbus".
+c) Add functionality to this Verticle to listen to the eventbus and print the contents on the console.
 
 
 ## 2. File importer
 [Filesystem](http://vertx.io/docs/vertx-core/java/#_using_the_file_system_with_vert_x)
 [RecordParser](http://vertx.io/docs/apidocs/io/vertx/core/parsetools/RecordParser.html)
-### a) Change the FileImporterVerticle which reads the db/mongo-seed/movies.json file line by line. It should send each movie over the eventbus.
-### b) Create a new Verticle with the name MovieListener which listens to the eventbus and prints the movies on the console.
+a) Change the FileImporterVerticle which reads the db/mongo-seed/movies.json file line by line. It should send each movie over the eventbus.
+b) Create a new Verticle with the name MovieListener which listens to the eventbus and prints the movies on the console.
 
 ## 3. MovieService and MongoDB.
-### a) Create save method in the MovieService
-### b) Create a method for find all movies in the MovieService with unittest
-### c) Change the Verticle created in step 2b. It should save each received movie with the MovieService save method.
+a) Create save method in the MovieService
+b) Create a method for find all movies in the MovieService with unittest
+c) Change the Verticle created in step 2b. It should save each received movie with the MovieService save method.
 
 ## 4. Search for movies REST
-### a)We will build a route GET /api/movies We use this to search for all movies
-### b)We will build a route GET /api/movies?keyword=<keyword>. We use this keyword to search for movies using the public Observable<JsonObject> findMovies(String keyword) method.
-### c) Test with http://localhost:8080/api/movies
+a)We will build a route GET /api/movies We use this to search for all movies
+b)We will build a route GET /api/movies?keyword=<keyword>. We use this keyword to search for movies using the public Observable<JsonObject> findMovies(String keyword) method.
+c) Test with http://localhost:8080/api/movies
 
 
-# 5. Websockets getting started
+## 5. Websockets getting started
 [Websockets](http://vertx.io/docs/vertx-core/java/#_websockets)
-Create a websockets hander which prints "hello world" on connection
+a) Attach the existing MovieWebSocketHandler to the HttpServer in the MovieAppMain class.
+b) Create a websockets hander which prints "hello world" on connection
 
-# 6. Websockets get all movies
+## 6. Websockets get all movies
 Create a websockets hander which listens for a Json message:
 {
   action : "get"
@@ -50,7 +51,7 @@ Create a websockets hander which listens for a Json message:
 When this message is received, it should send all movies back over the websocket connection
 You can use WebSocketClientTest to test this (with a little change)
 
-# 7. Websockets Search for Movies
+## 7. Websockets Search for Movies
 Create a websockets hander which listens for a Json message:
 {
   action : "search",
@@ -64,7 +65,7 @@ a) We are going to build a REST route POST /api/movies to save single movie with
 b) Create a method for find by id  in the MovieService
 c)We are going to build a REST route GET /api/movies/:id to retrieve a single movie with the MovieService class
 
-# Troubleshooting
+## Troubleshooting
 
 To start MongoDB with a prefilled movie database, run the following:
 * cd backend/db
