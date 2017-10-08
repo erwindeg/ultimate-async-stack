@@ -1,6 +1,13 @@
 # MovieClient
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.2.6.
 
+## Getting started
+Make sure you have [Node.js](https://nodejs.org/en/) installed. Go to the `movie-client` directory in your terminal and run 
+```bash
+$ npm install
+```
+This command installs all third party dependencies and puts them in the `node_modules` folder. For more info on how this process works, check the [npm](https://www.npmjs.com/) website.
+
 ## Development server
 
 Run `ng serve` or `npm start` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
