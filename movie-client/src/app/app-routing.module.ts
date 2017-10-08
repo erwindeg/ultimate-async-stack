@@ -7,6 +7,7 @@ import { PageNotFoundComponent } from "./page-not-found/page-not-found.component
 const appRoutes = [
   { path: 'movies', component: MoviesComponent },
   { path: 'movies/:id', component: MovieComponent },
+  // TODO: Add the new routing for the search component
   { path: '',
     redirectTo: '/movies',
     pathMatch: 'full'

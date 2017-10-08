@@ -13,5 +13,6 @@ export class MoviesComponent implements OnInit {
   }
 
   ngOnInit() {
+    // TODO: Get the results from the MovieService
   }
 }
