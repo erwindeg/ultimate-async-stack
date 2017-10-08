@@ -1,7 +1,7 @@
-/*md-toolbar > a:link,*/
-/*md-toolbar > a:focus,*/
-/*md-toolbar > a:visited,*/
-/*md-toolbar > a:hover {*/
-  /*text-decoration: none;*/
-  /*color: white;*/
-/*}*/
+md-toolbar a:link,
+md-toolbar a:focus,
+md-toolbar a:visited,
+md-toolbar a:hover {
+  text-decoration: none;
+  color: white;
+}
