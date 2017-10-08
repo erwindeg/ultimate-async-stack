@@ -16,9 +16,9 @@
 [Vert.x documentation](http://vertx.io/docs/vertx-core/java/)
 [Eventbus](http://vertx.io/docs/vertx-core/java/#event_bus)
 ## 1. Hello World
-### a) Create a new Verticle which displays "Hello World" on the console.
+### a) Create a new Verticle which displays "Hello World" on the console. You need to add a main method to deploy this verticle.
 ### b) Change the Verticle, it should send "Hello World over the eventbus".
-### c) Create another Verticle which listens to the eventbus and prints the contents on the console.
+### c) Create another Verticle which listens to the eventbus and prints the contents on the console. You can deploy this from the previous verticle
 
 
 ## 2. File importer
