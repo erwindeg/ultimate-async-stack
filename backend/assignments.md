@@ -44,7 +44,7 @@ a) Attach the existing MovieWebSocketHandler to the HttpServer in the MovieAppMa
 b) Create a websockets hander which prints "hello world" on connection
 
 ## 6. Websockets get all movies
-Create a websockets hander which listens for a Json message:
+Create a websockets handler which listens for a Json message:
 {
   action : "get"
 }
