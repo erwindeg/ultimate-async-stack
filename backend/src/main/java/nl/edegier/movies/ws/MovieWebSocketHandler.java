@@ -45,6 +45,11 @@ public class MovieWebSocketHandler implements Handler<ServerWebSocket> {
         }
 
         Subscription newSearch = movieService.findMovies(action.getBody()).subscribe(movie -> {
+          try {
+            Thread.sleep(500);
+          } catch (InterruptedException e) {
+            e.printStackTrace();
+          }
           ws.writeTextMessage(movie.encode());
         });
 
