@@ -6,6 +6,7 @@
 
 # Getting started
 * git clone https://github.com/erwindeg/ultimate-async-stack
+* git checkout backend-assignments
 * cd backend
 * mvn clean install
 * docker run -p 27017:27017 mongod
