@@ -12,7 +12,7 @@
 * git clone https://github.com/erwindeg/ultimate-async-stack
 
 ## Backend
-The assignments for the backend can be found at [backend/assignments.md](here)
+The assignments for the backend can be found at (backend/assignments.md)[here]
 
 ## Frontend
-The assignments for the backend can be found at [movie-client/assignments.md](here)
+The assignments for the backend can be found at (movie-client/assignments.md)[here]
