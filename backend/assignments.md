@@ -33,9 +33,9 @@
 
 from backend/db run: docker-compose up
 ## 3. MovieService and MongoDB.
-(1. Create save method in the MovieService)
+(1. Create save method in the MovieService)    
 1. Create a method for find all movies in the MovieService with unittest
-(1. Change the Verticle created in step 2b. It should save each received movie with the MovieService save method.)
+(1. Change the Verticle created in step 2b. It should save each received movie with the MovieService save method.)    
 
 
 ## 4. Search for movies REST
