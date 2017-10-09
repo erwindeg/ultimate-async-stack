@@ -10,7 +10,7 @@
 * cd backend
 * mvn clean install
 * docker run -p 27017:27017 mongo
-* Run MainWebVerticle from your IDE
+* Run MovieAppMain from your IDE
 * go to http://localhost:8080/api/hello
 
 # Assignments
