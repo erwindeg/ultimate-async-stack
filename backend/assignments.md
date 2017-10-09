@@ -22,16 +22,22 @@
 1. Add functionality to this Verticle to listen to the eventbus and print the contents on the console.
 
 
+//skip
 ## 2. File importer
 [Filesystem](http://vertx.io/docs/vertx-core/java/#_using_the_file_system_with_vert_x)
 [RecordParser](http://vertx.io/docs/apidocs/io/vertx/core/parsetools/RecordParser.html)
 1. Change the FileImporterVerticle which reads the db/mongo-seed/movies.json file line by line. It should send each movie over the eventbus.
 1. Create a new Verticle with the name MovieListener which listens to the eventbus and prints the movies on the console.
+//
 
+
+from backend/db run: docker-compose up
 ## 3. MovieService and MongoDB.
 1. Create save method in the MovieService
 1. Create a method for find all movies in the MovieService with unittest
+//skip
 1. Change the Verticle created in step 2b. It should save each received movie with the MovieService save method.
+//
 
 ## 4. Search for movies REST
 1. We will build a route GET /api/movies We use this to search for all movies
