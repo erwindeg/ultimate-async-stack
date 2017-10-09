@@ -6,10 +6,11 @@
 
 # Getting started
 * git clone https://github.com/erwindeg/ultimate-async-stack
+* git checkout backend-assignments
 * cd backend
 * mvn clean install
-* docker run -p 27017:27017 mongod
-* Run MainWebVerticle from your IDE
+* docker run -p 27017:27017 mongo
+* Run MovieAppMain from your IDE
 * go to http://localhost:8080/api/hello
 
 # Assignments

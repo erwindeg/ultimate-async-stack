@@ -10,6 +10,7 @@
 
 ## Getting started
 * git clone https://github.com/erwindeg/ultimate-async-stack
+* git checkout backend-assignments
 
 ## Backend
 The assignments for the backend can be found [here](backend/assignments.md)
