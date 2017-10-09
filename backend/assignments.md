@@ -22,6 +22,8 @@
 1. Add functionality to this Verticle to listen to the eventbus and print the contents on the console.
 
 ## 3. MovieService and MongoDB.
+1. docker ps
+1. docker stop <container-id>
 1. from backend/db run: docker-compose up
 1. Create a method for find all movies in the MovieService with unittest
 
