@@ -33,21 +33,21 @@
 1. Change the Verticle created in step 2b. It should save each received movie with the MovieService save method.
 
 ## 4. Search for movies REST
-a)We will build a route GET /api/movies We use this to search for all movies
-b)We will build a route GET /api/movies?keyword=<keyword>. We use this keyword to search for movies using the public Observable<JsonObject> findMovies(String keyword) method.
-c) Test with http://localhost:8080/api/movies
+1. We will build a route GET /api/movies We use this to search for all movies
+1. We will build a route GET /api/movies?keyword=<keyword>. We use this keyword to search for movies using the public Observable<JsonObject> findMovies(String keyword) method.
+1. Test with http://localhost:8080/api/movies
 
 
 ## 5. Websockets getting started
 [Websockets](http://vertx.io/docs/vertx-core/java/#_websockets)
-a) Attach the existing MovieWebSocketHandler to the HttpServer in the MovieAppMain class.
-b) Create a websockets hander which prints "hello world" on connection
+1. Attach the existing MovieWebSocketHandler to the HttpServer in the MovieAppMain class.
+1. Create a websockets hander which prints "hello world" on connection
 
 ## 6. Websockets get all movies
 Create a websockets handler which listens for a Json message:
 ```json
 {
-  action : "get"
+  "action" : "get"
 }
 ```
 When this message is received, it should send all movies back over the websocket connection
@@ -57,8 +57,8 @@ You can use WebSocketClientTest to test this (with a little change)
 Create a websockets hander which listens for a Json message:
 ```json
 {
-  action : "search",
-  body: "<keyword"
+  "action" : "search",
+  "body": "<keyword"
 }
 ```
 When this message is received, it should send all movies back that matches the search criterium. Use the public Observable<JsonObject> findMovies(String keyword) method in MovieService.
