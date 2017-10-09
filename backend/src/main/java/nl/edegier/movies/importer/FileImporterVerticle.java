@@ -36,7 +36,7 @@ public class FileImporterVerticle extends AbstractVerticle{
 
   private void readFile() {
     this.isReading = true;
-
+    //TODO: create a new Delimited Recordparser.
 
 
     FileSystem fs = vertx.fileSystem();
@@ -44,7 +44,7 @@ public class FileImporterVerticle extends AbstractVerticle{
       if (contents.succeeded()) {
         this.file = contents.result();
         this.file.handler(buffer -> {
-          //TODO: this buffer holds the contents of the file
+          //TODO: this buffer holds the contents of the file we call the parser from here
           //we can use a RecordParser to parse this buffer line by line
           //call the parsers handle method from here.
         });
