@@ -3,17 +3,20 @@ package nl.edegier.movies;
 import io.vertx.core.Handler;
 import io.vertx.core.VertxOptions;
 import io.vertx.core.http.HttpMethod;
+import io.vertx.core.json.Json;
 import io.vertx.rxjava.core.AbstractVerticle;
 import io.vertx.rxjava.core.RxHelper;
 import io.vertx.rxjava.core.Vertx;
 import io.vertx.rxjava.core.http.HttpServer;
+import io.vertx.rxjava.core.http.ServerWebSocket;
 import io.vertx.rxjava.ext.web.Router;
 import io.vertx.rxjava.ext.web.handler.BodyHandler;
 import io.vertx.rxjava.ext.web.handler.CorsHandler;
 import nl.edegier.movies.api.MovieRestService;
 import nl.edegier.movies.importer.MovieListener;
 import nl.edegier.movies.movies.MovieService;
-import nl.edegier.movies.ws.MovieWebSocketHandler;
+import nl.edegier.movies.ws.WSAction;
+import rx.Observable;
 
 public class MovieAppMain extends AbstractVerticle {
 
@@ -34,7 +37,21 @@ public class MovieAppMain extends AbstractVerticle {
     router.route().handler(createCorsHandler());
     router.route().handler(BodyHandler.create());
     router.mountSubRouter("/api",new MovieRestService(movieService,vertx).getRouter());
-    server.websocketHandler(new MovieWebSocketHandler(movieService));
+
+
+    Observable<ServerWebSocket> socketObservable = server.websocketStream().toObservable();
+    socketObservable.subscribe(
+      socket -> {
+        socket.toObservable()
+          .map(buffer -> Json.decodeValue(buffer.toString("UTF-8"), WSAction.class))
+          .filter(action -> action.isSearch())
+          .map(action -> action.getBody())
+          .switchMap(movieService::findMovies)
+          .map(movie -> movie.encode())
+          .subscribe(socket::writeTextMessage);
+      }
+    );
+
     server.requestHandler(router::accept).listen(8080);
   }
 
