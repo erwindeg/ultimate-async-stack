@@ -61,6 +61,12 @@ public class MovieService {
           if (result == null) {
             emitter.onCompleted();
           } else {
+            //For demo purposes, slow db.
+            try {
+              Thread.sleep(1000);
+            } catch (InterruptedException e) {
+              e.printStackTrace();
+            }
             emitter.onNext(result);
           }
         } else {

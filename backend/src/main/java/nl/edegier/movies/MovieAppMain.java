@@ -46,6 +46,7 @@ public class MovieAppMain extends AbstractVerticle {
           .map(buffer -> Json.decodeValue(buffer.toString("UTF-8"), WSAction.class))
           .filter(action -> action.isSearch())
           .map(action -> action.getBody())
+          .filter(searchTerm -> searchTerm.length() >= 3)
           .switchMap(movieService::findMovies)
           .map(movie -> movie.encode())
           .subscribe(socket::writeTextMessage);
