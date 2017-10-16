@@ -84,8 +84,6 @@ public class MovieService {
      mongoClient.save(MOVIES, movie, handler::handle);
   }
 
-
-
   public Single<JsonObject> findMovie(String id) {
     return mongoClient.rxFindOne(MOVIES, new JsonObject().put("_id", id), new JsonObject());
   }

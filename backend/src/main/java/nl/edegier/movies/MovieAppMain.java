@@ -1,7 +1,6 @@
 package nl.edegier.movies;
 
 import io.vertx.core.Handler;
-import io.vertx.core.VertxOptions;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.core.json.Json;
 import io.vertx.rxjava.core.AbstractVerticle;
@@ -21,9 +20,7 @@ import rx.Observable;
 public class MovieAppMain extends AbstractVerticle {
 
   public static void main(String[] args) {
-    Vertx.clusteredVertx(new VertxOptions(), res -> {
-        RxHelper.deployVerticle(res.result(), new MovieAppMain());
-    });
+        RxHelper.deployVerticle(Vertx.vertx(), new MovieAppMain());
   }
 
 
@@ -57,21 +54,19 @@ public class MovieAppMain extends AbstractVerticle {
   }
 
   public Handler createCorsHandler() {
-    CorsHandler corsHandler = CorsHandler.create("*");
-    corsHandler.allowedMethod(HttpMethod.GET);
-    corsHandler.allowedMethod(HttpMethod.POST);
-    corsHandler.allowedMethod(HttpMethod.PUT);
-    corsHandler.allowedMethod(HttpMethod.DELETE);
-    corsHandler.allowedHeader("Authorization");
-    corsHandler.allowedHeader("Content-Type");
-    corsHandler.allowedHeader("Authorization");
-    corsHandler.allowedHeader("www-authenticate");
-    corsHandler.allowedHeader("Content-Type");
-    corsHandler.allowedHeader("Access-Control-Request-Method");
-    corsHandler.allowedHeader("Access-Control-Allow-Credentials");
-    corsHandler.allowedHeader("Access-Control-Allow-Origin");
-    corsHandler.allowedHeader("Access-Control-Allow-Headers");
-    return corsHandler;
+    return CorsHandler.create("*")
+      .allowedMethod(HttpMethod.GET)
+      .allowedMethod(HttpMethod.POST)
+      .allowedMethod(HttpMethod.PUT)
+      .allowedMethod(HttpMethod.DELETE)
+      .allowedHeader("Authorization")
+      .allowedHeader("Content-Type")
+      .allowedHeader("Authorization")
+      .allowedHeader("www-authenticate")
+      .allowedHeader("Content-Type")
+      .allowedHeader("Access-Control-Request-Method")
+      .allowedHeader("Access-Control-Allow-Credentials")
+      .allowedHeader("Access-Control-Allow-Origin");
   }
 
 }
