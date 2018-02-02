@@ -11,8 +11,7 @@
           <input mdInput
                  placeholder="Searchterm"
                  name="searchTerm"
-                 (ngModelChange)="searchChanged($event)"
-                 [(ngModel)]="searchTerm">
+                 [formControl]="searchTerm">
         </md-form-field>
       </div>
     </div>
