@@ -61,6 +61,12 @@ public class MovieService {
           if (result == null) {
             emitter.onCompleted();
           } else {
+            //For demo purposes, slow db.
+            try {
+              Thread.sleep(1000);
+            } catch (InterruptedException e) {
+              e.printStackTrace();
+            }
             emitter.onNext(result);
           }
         } else {
@@ -77,8 +83,6 @@ public class MovieService {
   public void saveMovie(JsonObject movie, Handler<AsyncResult<String>> handler) {
      mongoClient.save(MOVIES, movie, handler::handle);
   }
-
-
 
   public Single<JsonObject> findMovie(String id) {
     return mongoClient.rxFindOne(MOVIES, new JsonObject().put("_id", id), new JsonObject());
