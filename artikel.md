@@ -4,6 +4,7 @@ Ontwikkelaars krijgen steeds meer tools aangereikt om asynchrone afhandeling van
 In dit artikel kijken we aan de hand van een voorbeeld naar een alternatief in de vorm van websockets. We zullen een systeem bouwen met een Angular frontend en een Vert.x backend. Voor de asynchrone afhandeling maken gebruik van Observables in RxJS en RxJava. Het voorbeeld gebruikt websockets omdat dit een populaire standaard is. Het principe kan echter ook worden toegepast op vergelijkbare protocollen zoals bijvoorbeeld TCP.
 
 # Use case
+We maken een webapplicatie waarin gebruikers kunnen zoeken naar films. De hoofdfunctionaliteut bestaat uit een tekstveld waar zoek termen ingetikt kunnen worden. De applicatie toont vervolgens direct de gevonden films.
 
 # Technologie
 
