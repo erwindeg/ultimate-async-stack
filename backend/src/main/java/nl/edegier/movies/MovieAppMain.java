@@ -36,11 +36,13 @@ public class MovieAppMain extends AbstractVerticle {
     router.mountSubRouter("/api",new MovieRestService(movieService,vertx).getRouter());
 
 
-    Observable<ServerWebSocket> socketObservable = server.websocketStream().toObservable();
-    socketObservable.subscribe(
+    Observable<ServerWebSocket> wsStreamObservable
+      = server.websocketStream().toObservable();
+    wsStreamObservable.subscribe(
       socket -> {
         socket.toObservable()
-          .map(buffer -> Json.decodeValue(buffer.toString("UTF-8"), WSAction.class))
+          .map(buffer ->
+            Json.decodeValue(buffer.toString("UTF-8"), WSAction.class))
           .filter(action -> action.isSearch())
           .map(action -> action.getBody())
           .filter(searchTerm -> searchTerm.length() >= 3)
