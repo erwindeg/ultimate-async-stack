@@ -138,7 +138,7 @@ Het tweede wat we moeten doen is luisteren naar veranderingen in het zoekveld (i
 
 Nu kunnen we natuurlijk direct waardes over de lijn sturen, maar we kunnen het veld wat slimmer maken. Een eerste stap die we hierin maken is door alleen te acteren op drie of meer karakters. Hiervoor gebruiken we de reeds bekende `filter` operator.
 
-Een verdere optimalisatie die we kunnen doen is door alleen een zoekterm te versturen als we kunnen aannemen dat de gebruiker klaar is met typen. Hiervoor kunnen we de `debounceTime` operator toepassen. **REGEL** Hiermee geven we aan dat we pas verder willen gaan met de data uit de Observable als er minstens 300ms geen nieuwe data uit de Observable komt.
+Een verdere optimalisatie die we kunnen doen is door alleen een zoekterm te versturen als we kunnen aannemen dat de gebruiker klaar is met typen. Hiervoor kunnen we de `debounceTime` operator toepassen. Hiermee geven we aan dat we pas verder willen gaan met de data uit de Observable als er minstens 300ms geen nieuwe data uit de Observable komt.
 
 ![debounce](debounce.png)
 _Diagram 4: debouncetime_
@@ -190,6 +190,5 @@ ReactiveX is al met al een goede toevoeging aan de toolkit van elke developer. D
 
 De volledige source code van dit project is te vinden op: https://github.com/erwindeg/ultimate-async-stack.
 
-[1](https://cli.angular.io)
-[2](https://angular.io/guide/styleguide)
-[3]
+[1] https://cli.angular.io     
+[2] https://angular.io/guide/styleguide    
