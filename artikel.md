@@ -108,7 +108,7 @@ Tot slot gebruiken we nogmaals een map operator om de films om te zetten naar ee
 
 # Frontend
 
-Nu we een mooie api hebben staan moeten we uiteraard nog films gaan tonen aan de gebruikers. Zoals genoemd gebruiken we hiervoor Angular 4 icm TypeScript. Het project is gegenereerd met de [Angular CLI](https://cli.angular.io). We hanteren daarnaast zoveel mogelijk de officiële [styleguide van Angular](https://angular.io/guide/styleguide).
+Nu we een mooie api hebben staan moeten we uiteraard nog films gaan tonen aan de gebruikers. Zoals genoemd gebruiken we hiervoor Angular 4 in combinatie met TypeScript. Het project is gegenereerd met de Angular CLI[1] . We hanteren daarnaast zoveel mogelijk de officiële styleguide van Angular[2].
 
 De frontend bestaat uit verschillende pagina's, wat onze container componenten zijn. De meeste actie vindt plaats op de zoek pagina. Hiervoor is een search component aangemaakt. Op de zoekpagina vinden we een tekstveld waarme we uiteindelijk searchterms over de websocketconnectie versturen naar de backend. De resultaten die terugkomen renderen we netjes met een apart component.
 
@@ -187,3 +187,9 @@ De afhandeling van de resultaten zetten we ook op in de component initialisatie.
 Ondanks de vrij grote mate van complexiteit in het opzetten en afhandelen van alle asynchroniteit in de applicatie is de code zeer goed te volgen. Het is compact, to the point en semantisch redelijk vanzelfsprekend. Het afhandelen van een data stream door middel van een pipe waar de data doorheen gaat is krachtig en makkelijker mee te werken dan bijvoorbeeld callbacks. Daarnaast geeft het scheiden van databron (Observable) en dataconsument (Observer) ons flexibiliteit. Het is op deze manier mogelijk om meerdere en verschillende afhandelingen voor eenzelfde databron te definiëren. Ook geeft het ons de mogelijkheid om eenzelfde API te gebruiken in zowel de frontend (RxJS) als de backend (RxJava). Bekend zijn met de ReactiveX operators heeft hier dus voor zowel frontend als backend werk toegevoegde waarde.
 
 ReactiveX is al met al een goede toevoeging aan de toolkit van elke developer. De mogelijkheden en toepassingen ervoor zijn eindeloos. Daarnaast is het zeer goed gedocumenteerd. Denk de volgende keer bij een project met asynchroniteit dus zeker aan de Reactive Extensions library!
+
+De volledige source code van dit project is te vinden op: https://github.com/erwindeg/ultimate-async-stack.
+
+[1](https://cli.angular.io)
+[2](https://angular.io/guide/styleguide)
+[3]
