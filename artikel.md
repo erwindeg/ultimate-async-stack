@@ -73,17 +73,18 @@ Als de gebruiker een nieuw karakter intikt, krijgen we via de websocket verbindi
   }
 
   if (action != null && action.isSearch()) {
-    Subscription existingSearch = subscriptions.get(ws.textHandlerID());
-    if (existingSearch != null) { //1
-      existingSearch.unsubscribe(); //2
-    }
+      Subscription existingSearch = subscriptions.get(ws.textHandlerID());
+      if (existingSearch != null) { //1
+        existingSearch.unsubscribe(); //2
+      }
 
-    Subscription newSearch
-      = movieService.findMovies(action.getBody()).subscribe(movie -> { //3
-      ws.writeTextMessage(movie.encode());
-    });
+      Subscription newSearch
+        = movieService.findMovies(action.getBody()).subscribe(movie -> { //3
+        ws.writeTextMessage(movie.encode());
+      });
 
-    subscriptions.put(ws.textHandlerID(), newSearch); //4
+      subscriptions.put(ws.textHandlerID(), newSearch); //4
+  }
 ```
 
 _Listing 2_
